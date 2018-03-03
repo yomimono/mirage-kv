@@ -1,11 +1,20 @@
 language: c
-sudo: required
-install: wget https://raw.githubusercontent.com/ocaml/ocaml-ci-scripts/master/.travis-opam.sh
-script: bash -ex .travis-opam.sh
+install: wget https://raw.githubusercontent.com/ocaml/ocaml-ci-scripts/master/.travis-docker.sh
+script: bash -ex .travis-docker.sh
+services:
+- docker
 env:
   global:
-  - PINS="mirage-kv.dev:. mirage-kv-lwt.dev:."
+  - PINS="mirage-kv:. mirage-kv-lwt:."
+  - DISTRO="debian-stable"
   matrix:
-  - OCAML_VERSION=4.03 PACKAGE="mirage-kv-lwt"
-  - OCAML_VERSION=4.04 PACKAGE="mirage-kv-lwt"
-  - OCAML_VERSION=4.05 PACKAGE="mirage-kv-lwt"
+  - PACKAGE="mirage-kv" OCAML_VERSION="4.03.0"
+  - PACKAGE="mirage-kv" OCAML_VERSION="4.04.2"
+  - PACKAGE="mirage-kv" OCAML_VERSION="4.05.0"
+  - PACKAGE="mirage-kv" OCAML_VERSION="4.06.0"
+  - PACKAGE="mirage-kv-lwt" OCAML_VERSION="4.01.0"
+  - PACKAGE="mirage-kv-lwt" OCAML_VERSION="4.02.3"
+  - PACKAGE="mirage-kv-lwt" OCAML_VERSION="4.03.0"
+  - PACKAGE="mirage-kv-lwt" OCAML_VERSION="4.04.2"
+  - PACKAGE="mirage-kv-lwt" OCAML_VERSION="4.05.0"
+  - PACKAGE="mirage-kv-lwt" OCAML_VERSION="4.06.0"
